@@ -1,78 +1,72 @@
 package com.tiendakss.dao;
 
-import com.tiendakss.modelo.Producto;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import com.tiendakss.modelo.Producto;
 
+/**
+ * Clase DAO para la entidad Producto.
+ * Retorna valores booleanos para cumplir con el flujo de control de la vista y servlets.
+ */
 public class ProductoDAO {
 
-    // 1. INSERCIÓN (Crear Producto)
+    private static final String INSERTAR_SQL = "INSERT INTO productos (nombre, precio, stock) VALUES (?, ?, ?);";
+    private static final String SELECCIONAR_TODOS = "SELECT * FROM productos;";
+    private static final String ACTUALIZAR_SQL = "UPDATE productos SET nombre = ?, precio = ?, stock = ? WHERE id = ?;";
+    private static final String ELIMINAR_SQL = "DELETE FROM productos WHERE id = ?;";
+
     public boolean insertar(Producto producto) {
-        String sql = "INSERT INTO productos (nombre, precio, stock) VALUES (?, ?, ?)";
-        try (Connection con = ConexionBD.obtenerConexion();
-             PreparedStatement ps = con.prepareStatement(sql)) {
-            
+        try (Connection conexion = ConexionBD.obtenerConexion();
+             PreparedStatement ps = conexion.prepareStatement(INSERTAR_SQL)) {
             ps.setString(1, producto.getNombre());
             ps.setDouble(2, producto.getPrecio());
             ps.setInt(3, producto.getStock());
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
-            System.out.println("Error al insertar producto: " + e.getMessage());
+            e.printStackTrace();
             return false;
         }
     }
 
-    // 2. CONSULTA (Leer todos los productos)
     public List<Producto> listar() {
         List<Producto> lista = new ArrayList<>();
-        String sql = "SELECT * FROM productos";
-        try (Connection con = ConexionBD.obtenerConexion();
-             PreparedStatement ps = con.prepareStatement(sql);
+        try (Connection conexion = ConexionBD.obtenerConexion();
+             PreparedStatement ps = conexion.prepareStatement(SELECCIONAR_TODOS);
              ResultSet rs = ps.executeQuery()) {
-            
             while (rs.next()) {
-                Producto p = new Producto(
-                    rs.getInt("id_producto"),
-                    rs.getString("nombre"),
-                    rs.getDouble("precio"),
-                    rs.getInt("stock")
-                );
-                lista.add(p);
+                lista.add(new Producto(rs.getInt("id"), rs.getString("nombre"), rs.getDouble("precio"), rs.getInt("stock")));
             }
         } catch (SQLException e) {
-            System.out.println("Error al listar productos: " + e.getMessage());
+            e.printStackTrace();
         }
         return lista;
     }
 
-    // 3. ACTUALIZACIÓN (Modificar Producto)
     public boolean actualizar(Producto producto) {
-        String sql = "UPDATE productos SET nombre = ?, precio = ?, stock = ? WHERE id_producto = ?";
-        try (Connection con = ConexionBD.obtenerConexion();
-             PreparedStatement ps = con.prepareStatement(sql)) {
-            
+        try (Connection conexion = ConexionBD.obtenerConexion();
+             PreparedStatement ps = conexion.prepareStatement(ACTUALIZAR_SQL)) {
             ps.setString(1, producto.getNombre());
             ps.setDouble(2, producto.getPrecio());
             ps.setInt(3, producto.getStock());
-            ps.setInt(4, producto.getIdProducto());
+            ps.setInt(4, producto.getId());
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
-            System.out.println("Error al actualizar producto: " + e.getMessage());
+            e.printStackTrace();
             return false;
         }
     }
 
-    // 4. ELIMINACIÓN (Borrar Producto)
     public boolean eliminar(int id) {
-        String sql = "DELETE FROM productos WHERE id_producto = ?";
-        try (Connection con = ConexionBD.obtenerConexion();
-             PreparedStatement ps = con.prepareStatement(sql)) {
-            
+        try (Connection conexion = ConexionBD.obtenerConexion();
+             PreparedStatement ps = conexion.prepareStatement(ELIMINAR_SQL)) {
             ps.setInt(1, id);
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
-            System.out.println("Error al eliminar producto: " + e.getMessage());
+            e.printStackTrace();
             return false;
         }
     }

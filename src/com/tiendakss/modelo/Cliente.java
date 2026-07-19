@@ -60,4 +60,9 @@ public class Cliente {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
+
+    public String getEmail() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getEmail'");
+    }
 }

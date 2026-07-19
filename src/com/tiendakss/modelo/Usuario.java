@@ -1,5 +1,9 @@
 package com.tiendakss.modelo;
 
+/**
+ * Clase de modelo para la entidad Usuario.
+ * Adaptada con los métodos requeridos por la interfaz de la vista.
+ */
 public class Usuario {
     private int idUsuario;
     private String nombreCompleto;
@@ -7,11 +11,11 @@ public class Usuario {
     private String password;
     private String rol;
 
-    // Constructor vacío (necesario para cuando listamos datos)
+    // Constructor vacío obligatorio
     public Usuario() {
     }
 
-    // Constructor con todos los parámetros (para registrar o actualizar)
+    // Constructor de 5 parámetros exigido por la vista (Lín. 143)
     public Usuario(int idUsuario, String nombreCompleto, String username, String password, String rol) {
         this.idUsuario = idUsuario;
         this.nombreCompleto = nombreCompleto;
@@ -20,7 +24,7 @@ public class Usuario {
         this.rol = rol;
     }
 
-    // Métodos Getters y Setters
+    // Métodos específicos requeridos por App.java (Lín. 33, 128)
     public int getIdUsuario() {
         return idUsuario;
     }
@@ -37,27 +41,11 @@ public class Usuario {
         this.nombreCompleto = nombreCompleto;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getRol() {
-        return rol;
-    }
-
-    public void setRol(String rol) {
-        this.rol = rol;
-    }
+    // Getters y Setters estándar adicionales
+    public String getUsername() { return username; }
+    public void setUsername(String username) { this.username = username; }
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
+    public String getRol() { return rol; }
+    public void setRol(String rol) { this.rol = rol; }
 }

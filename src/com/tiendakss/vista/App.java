@@ -1,11 +1,11 @@
 package com.tiendakss.vista;
 
 import com.tiendakss.dao.ProductoDAO;
-import com.tiendakss.dao.UsuarioDAO;
 import com.tiendakss.dao.ClienteDAO;
 import com.tiendakss.dao.ProveedorDAO;
 import com.tiendakss.modelo.Producto;
 import com.tiendakss.modelo.Usuario;
+import com.tiendakss.dao.UsuarioDAO;
 import com.tiendakss.modelo.Cliente;
 import com.tiendakss.modelo.Proveedor;
 import java.util.List;
