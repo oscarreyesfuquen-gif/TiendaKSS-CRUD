@@ -1,15 +1,15 @@
-# 🛒 Sistema CRUD - Tienda KSS
+# Sistema CRUD - Tienda KSS
 
 ¡Bienvenido/a al repositorio oficial de **Tienda KSS**, un sistema de información de escritorio de tipo CRUD (*Create, Read, Update, Delete*) desarrollado en Java y conectado a una base de datos relacional MySQL.
 
 ---
 
-## 📝 Introducción
+## Introducción
 El proyecto expone el desarrollo de un software diseñado para centralizar y automatizar los procesos operativos esenciales de un comercio. Implementa una arquitectura limpia basada en el patrón de diseño **DAO (Data Access Object)**, logrando una separación total entre la lógica de negocio y la persistencia de datos. El sistema abarca desde la autenticación de usuarios por roles hasta el control de los eslabones clave de la cadena de valor: inventario, clientes y proveedores.
 
 ---
 
-## 🎯 Objetivos
+## Objetivos
 
 ### Objetivo General
 Desarrollar e implementar un sistema de gestión relacional para la **Tienda KSS** utilizando el lenguaje Java y MySQL, que permita administrar de manera segura y eficiente la información del comercio a través de una arquitectura modular.
@@ -22,7 +22,7 @@ Desarrollar e implementar un sistema de gestión relacional para la **Tienda KSS
 
 ---
 
-## 🛠️ Ecosistema Tecnológico y Herramientas
+## Ecosistema Tecnológico y Herramientas Utilizadas
 
 * **Visual Studio Code (VS Code):** Editor de código fuente principal.
 * **Extension Pack for Java (Microsoft):** Soporte de lenguaje (Red Hat), depurador (Debugger for Java) y gestión de proyectos.
@@ -32,7 +32,7 @@ Desarrollar e implementar un sistema de gestión relacional para la **Tienda KSS
 
 ---
 
-## 📂 Estructura del Proyecto
+## Estructura del Proyecto
 
 El espacio de trabajo se organiza bajo la siguiente estructura modular de paquetes:
 
