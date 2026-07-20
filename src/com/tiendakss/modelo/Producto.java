@@ -32,7 +32,6 @@ public class Producto {
     public void setStock(int stock) { this.stock = stock; }
 
     public int getId() {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getId'");
     }
 }

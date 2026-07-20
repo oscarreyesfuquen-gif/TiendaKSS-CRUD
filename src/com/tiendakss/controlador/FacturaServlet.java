@@ -1,6 +1,5 @@
 package com.tiendakss.controlador;
 
-import java.io.IOException;
 import java.util.List;
 import com.tiendakss.dao.FacturaDAO;
 import com.tiendakss.modelo.Factura;

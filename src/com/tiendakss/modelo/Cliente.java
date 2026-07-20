@@ -62,7 +62,6 @@ public class Cliente {
     }
 
     public String getEmail() {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getEmail'");
     }
 }

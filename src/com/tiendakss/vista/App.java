@@ -19,20 +19,39 @@ public class App {
         ProveedorDAO proveedorDAO = new ProveedorDAO();
         Scanner teclado = new Scanner(System.in);
         
-        System.out.println("=======================================");
+       System.out.println("=======================================");
         System.out.println("   INGRESO AL SISTEMA - TIENDA KSS    ");
         System.out.println("=======================================");
-        System.out.print("Username: ");
-        String userLogin = teclado.nextLine();
-        System.out.print("Contraseña: ");
-        String passLogin = teclado.nextLine();
+        
+        String userLogin = "";
+        String passLogin = "";
+        boolean datosValidos = false;
 
+        // Bucle interactivo para pruebas de validación (GA7-220501096-AA3-EV02)
+        while (!datosValidos) {
+            System.out.print("Username (Mínimo 4 caracteres): ");
+            userLogin = teclado.nextLine().trim();
+
+            System.out.print("Contraseña (Mínimo 4 caracteres): ");
+            passLogin = teclado.nextLine().trim();
+
+            // Control de campos vacíos o longitudes insuficientes
+            if (userLogin.isEmpty() || passLogin.isEmpty()) {
+                System.out.println("\n[ERROR DE VALIDACIÓN] Los campos no pueden estar vacíos. Intente de nuevo.\n");
+            } else if (userLogin.length() < 4 || passLogin.length() < 4) {
+                System.out.println("\n[ERROR DE VALIDACIÓN] El usuario y la contraseña deben tener al menos 4 caracteres.\n");
+            } else {
+                datosValidos = true; // Si todo está bien, salimos del bucle de control
+            }
+        }
+
+        // Una vez validados los formatos, se comprueban las credenciales en el DAO
         Usuario usuarioLogueado = usuarioDAO.validarLogin(userLogin, passLogin);
 
         if (usuarioLogueado != null) {
             System.out.println("\n¡Bienvenido/a al sistema, " + usuarioLogueado.getNombreCompleto() + "!");
             System.out.println("Rol actual: [" + usuarioLogueado.getRol() + "]");
-            
+                        
             int opcion = 0;
             do {
                 System.out.println("\n=======================================");
